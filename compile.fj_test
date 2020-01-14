@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#this is the full path in my environment
+#g++ fj_test.C -o fj_test `/opt/fastjet-3.3.3/fastjet-install/bin/fastjet-config --cxxflags --libs --plugins`
+
+#if you apprpriately modify your $PATH and $LD_LIBRARY_PATH, you can just do this
+g++ fj_test.C -o fj_test `fastjet-config --cxxflags --libs --plugins`
+
