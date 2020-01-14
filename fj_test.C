@@ -1,26 +1,46 @@
-#include pythia
+#include "fastjet/ClusterSequence.hh"
+#include <iostream>
 
-int main(){
-// Generator. Process selection. LHC initialization.
-  Pythia pythia;
-  pythia.readString("Beams:eCM = 8000.");
-  pythia.readString("HardQCD:all = on");
-  pythia.readString("PhaseSpace:pTHatMin = 20.");
-  pythia.init();
+using namespace fastjet;
+using namespace std;
 
-  for (int iEvent = 0; iEvent < 10000; ++iEvent)
+
+
+int main()
+{
+  vector<PseudoJet> particles;
+  // an event with three particles:   px    py  pz      E
+  particles.push_back( PseudoJet(   99.0,  0.1,  0, 100.0) );
+  particles.push_back( PseudoJet(    4.0, -0.1,  0,   5.0) );
+  particles.push_back( PseudoJet(  -99.0,    0,  0,  99.0) );
+
+  // choose a jet definition
+  double R = 0.7;
+  JetDefinition jet_def(antikt_algorithm, R);
+
+  // run the clustering, extract the jets
+  ClusterSequence cs(particles, jet_def);
+  vector<PseudoJet> jets = sorted_by_pt(cs.inclusive_jets());
+
+  // print out some infos
+  cout << "Clustering with " << jet_def.description() << endl;
+
+  // print the jets
+  cout <<   "        pt y phi" << endl;
+  for (unsigned i = 0; i < jets.size(); i++)
     {
-      // --- for the generic formulas ---------
-      for(int h=0;h<maxHarmonic;h++)
+      cout << "jet " << i << ": "<< jets[i].pt() << " "
+           << jets[i].rap() << " " << jets[i].phi() << endl;
+      vector<PseudoJet> constituents = jets[i].constituents();
+      for (unsigned j = 0; j < constituents.size(); j++)
         {
-          for(int w=0;w<maxPower;w++)
-            {
-              Qvector[h][w] = TComplex(0.,0.);
-            } //  for(int p=0;p<maxPower;p++)
-        } // for(int h=0;h<maxHarmonic;h++)
-      // --------------------------------------
+          cout << "    constituent " << j << "'s pt: " << constituents[j].pt()
+               << endl;
+        } // loop over jet constituents
+    } // loop over jets
 
-      if (!pythia.next()) continue;
-      // Find number of all final charged particles and fill histogram.
+  // all done
+  return 0;
 
-}
+} // main
+
