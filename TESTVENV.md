@@ -1,12 +1,12 @@
-title: Necessary Packages
-date: 2020/01/14
+title: Necessary Packages <br />
+date: 2020/01/14 <br />
+
 ----------
 
-From Pythia: #include "Pythia8/Pythia.h"
-From Fastjet: #include "fastjet/ClusterSequence.hh"
-From Root: TROOT.h, TH1D.h, TProfile.h, TFile.h
+From Pythia: #include "Pythia8/Pythia.h" <br />
+From Fastjet: #include "fastjet/ClusterSequence.hh" <br />
+From Root: TROOT.h, TH1D.h, TProfile.h, TFile.h <br />
 
 namespaces: fastjet, pythia
 
-pythia methods used: .readstring(), .init(), .next(), .isFinal(), .push_back(), .stat()   
 fastjet methods used: (function)JetDefinition, (function)ClusterSequence, PsuedoJet
