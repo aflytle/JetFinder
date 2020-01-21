@@ -1,7 +1,6 @@
 #!/bin/bash
 
+#g++ -o fj_pythia_test fj_pythia_test.C -std=c++11 -Wall -Wshadow  `fastjet-config --cxxflags --libs --plugins` `root-config --libs` -I$ROOTSYS/include `pythia8-config --libs` `pythia8-config --cxxflags`
 
-
-g++ -o fj_pythia_test fj_pythia_test.C -std=c++11 -Wall -Wshadow  `fastjet-config --cxxflags --libs --plugins` `root-config --libs` -I$ROOTSYS/include `pythia8-config --libs` `pythia8-config --cxxflags`
-
+g++ -o fj_pythia_test fj_pythia_test.C -Wall -Wshadow `root-config --cflags --libs` `fastjet-config --cxxflags --libs --plugins` `pythia8-config --cxxflags --libs`
 
