@@ -5,7 +5,7 @@
 #include "TProfile.h"
 #include "TFile.h"
 
-#include "Pythi8/Pythia.h"
+#include "Pythia8/Pythia.h"
 
 #include "fastjet/ClusterSequence.hh"
 
@@ -24,9 +24,9 @@ int main()
 
   // initialize a new ROOT histogram to fill with the loop
   TH1D* pTr = new TH1D("pT", "Transverse Momentum", 100, -10, 10);
-  
-  
-  
+
+
+
   // Generator. Process selection. LHC initialization.
   Pythia pythia;
   pythia.readString("Beams:eCM = 8000.");
@@ -49,7 +49,7 @@ int main()
 
       // --- make the object for FastJet
       vector<PseudoJet> particles;
-     
+
       // --- loop over the particles in the event
       for (int i = 0; i < event.size(); ++i)
         {
@@ -62,7 +62,7 @@ int main()
           // double phi = p.phi();
           // double eta = p.eta();
           double pT  = p.pT();
-	  pTr->Fill( pT )
+	  pTr->Fill( pT );
 
           // --- double check these
           double px = p.px();
@@ -114,9 +114,8 @@ int main()
   TFile* JetHistFile = new TFile("testout.root","recreate");
   pTr->Write();
   pTr->Draw();
-  HistFile->Close();
+  JetHistFile->Close();
 
   return 0;
-  
-} // end of int main()
 
+} // end of int main()
