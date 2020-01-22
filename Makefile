@@ -1,8 +1,8 @@
-FFLAGS = -I${FASTJET}/include -Wl,-rpath,${FASTJET}/lib -L${FASTJET}/lib -lfastjettools -lfastjet -lm -lfastjetplugins -lsiscone_spherical -lsiscone
+FFLAGS = `fastjet-config --cxxflags --libs --plugins`
 
-PFLAGS = -I${PYTHIA8}/include -L${PYTHIA8}/lib -lpythia8 -ldl
+PFLAGS = `pythia8-config --cxxflags --libs`
 
-RFLAGS = -pthread -stdlib=libc++ -std=c++11 -m64 -I${ROOTSYS}/include -L${ROOTSYS}/lib -lCore -lImt -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lROOTDataFrame -lROOTVecOps -lTree -lTreePlayer -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -lpthread -stdlib=libc++ -lm -ldl
+RFLAGS = `root-config --cflags --libs`
 
 PROGRAMS = fj_test fj_pythia_test
 
