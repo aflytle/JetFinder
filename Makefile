@@ -1,8 +1,8 @@
-FFLAGS = -I/opt/fastjet-3.3.3/fastjet-install/include -Wl,-rpath,/opt/fastjet-3.3.3/fastjet-install/lib -L/opt/fastjet-3.3.3/fastjet-install/lib -lfastjettools -lfastjet -lm -lfastjetplugins -lsiscone_spherical -lsiscone
+FFLAGS = -I${FASTJET}/include -Wl,-rpath,${FASTJET}/lib -L${FASTJET}/lib -lfastjettools -lfastjet -lm -lfastjetplugins -lsiscone_spherical -lsiscone
 
-PFLAGS = -I/opt/pythia8240/include -L/opt/pythia8240/lib -lpythia8 -ldl
+PFLAGS = -I${PYTHIA8}/include -L${PYTHIA8}/lib -lpythia8 -ldl
 
-RFLAGS = -pthread -stdlib=libc++ -std=c++11 -m64 -I/opt/root/include -L/opt/root/lib -lCore -lImt -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lROOTDataFrame -lROOTVecOps -lTree -lTreePlayer -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -lpthread -stdlib=libc++ -lm -ldl
+RFLAGS = -pthread -stdlib=libc++ -std=c++11 -m64 -I${ROOTSYS}/include -L${ROOTSYS}/lib -lCore -lImt -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lROOTDataFrame -lROOTVecOps -lTree -lTreePlayer -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -lpthread -stdlib=libc++ -lm -ldl
 
 PROGRAMS = fj_test fj_pythia_test
 
