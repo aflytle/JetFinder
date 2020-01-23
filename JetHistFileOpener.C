@@ -4,11 +4,11 @@ void JetHistFileOpener()
 {
   TFile* file = TFile::Open("testout.root");
 
-  TProfile* pTr = (TProfile*)file->Get("pTr");
+  TH1D* pTr = (TH1D*)file->Get("pTr");
   cout << pTr << endl;
   pTr->Draw();
 
-  TProfile* pTj = (TProfile*)file->Get("pTj");
+  TH1D* pTj = (TH1D*)file->Get("pTj");
   cout << pTj << endl;
   pTj->Draw();
 
