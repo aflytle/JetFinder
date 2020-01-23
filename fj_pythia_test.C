@@ -114,9 +114,9 @@ int main()
   //Tfile for I/O stuff
   TFile* JetHistFile = new TFile("testout.root","recreate");
   pTr->Write();
-  pTr->Draw();
+  //  pTr->Draw();
   pTj->Write();
-  pTj->Draw();
+  // pTj->Draw();
   JetHistFile->Close();
 
   return 0;
