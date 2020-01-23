@@ -23,8 +23,8 @@ int main()
 {
 
   // initialize a new ROOT histogram to fill with the loop
-  TH1D* pTr = new TH1D("pT", "Transverse Momentum", 100, -10, 10);
-
+  TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, -10, 10);
+  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, -10, 10);
 
 
   // Generator. Process selection. LHC initialization.
@@ -96,6 +96,7 @@ int main()
         {
           cout << "jet " << i << ": "<< jets[i].pt() << " " << jets[i].rap() << " " << jets[i].phi() << endl;
           vector<PseudoJet> constituents = jets[i].constituents();
+	  pTj->Fill(jets[i].pt());
           for (unsigned j = 0; j < constituents.size(); j++)
             {
               cout << "    constituent " << j << "'s pt: " << constituents[j].pt() << endl;
@@ -114,6 +115,8 @@ int main()
   TFile* JetHistFile = new TFile("testout.root","recreate");
   pTr->Write();
   pTr->Draw();
+  pTj->Write();
+  pTj->Draw();
   JetHistFile->Close();
 
   return 0;
