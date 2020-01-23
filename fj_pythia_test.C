@@ -23,8 +23,8 @@ int main()
 {
 
   // initialize a new ROOT histogram to fill with the loop
-  TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, -10, 10);
-  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, -10, 10);
+  TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, 0, 100);
+  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
 
 
   // Generator. Process selection. LHC initialization.
