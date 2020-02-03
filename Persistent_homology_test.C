@@ -14,12 +14,15 @@
 #include <vector>
 #include <limits> // for std::numeric_limits
 
-int main(){
+using namespace std;
+
+int main()
+{
   // Type definitions
   using Simplex_tree = Gudhi::Simplex_tree<>;
   using Filtration_value = Simplex_tree::Filtration_value;
   using Rips_complex = Gudhi::rips_complex::Rips_complex<Filtration_value>;
-  using Distance_matrix = std::vector<std::vector<Filtration_value>>;
+  using Distance_matrix = vector<vector<Filtration_value>>;
 
   Distance_matrix distances;
   distances.push_back({});
@@ -38,9 +41,9 @@ int main(){
   rips_complex_from_points.create_complex(stree,1);
 
   //Display info about rips complex (one skeleton)
-  cout<<"dimension"<<stree.dimension<<
+  cout<<"dimension"<<stree.dimension()<<
     " - " << stree.num_simplices() << "simplices" <<
-    stree.num_vertices() << "vertices." << std::endl;
+    stree.num_vertices() << "vertices." << endl;
 
-  return 0
-    }
+  return 0;
+}
