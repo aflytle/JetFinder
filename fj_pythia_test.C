@@ -9,7 +9,9 @@
 
 #include "fastjet/ClusterSequence.hh"
 
-
+//Added this to write .off file
+#include <fstream>
+#include <iostream>
 
 using namespace fastjet;
 using namespace Pythia8;
@@ -21,7 +23,10 @@ const double pi = 3.14159265358979323;
 
 int main()
 {
-
+  // Create .off file to externally store collision data, then set to read/write permissions
+  ofstream file_("particle_data_03_02_2020.off");
+  //file_.open ("particle_data_03_02_2020.off");
+  
   // initialize a new ROOT histogram to fill with the loop
   TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, 0, 100);
   TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
@@ -63,13 +68,17 @@ int main()
           // double eta = p.eta();
           double pT  = p.pT();
 	  pTr->Fill( pT );
-
+	  
           // --- double check these
           double px = p.px();
           double py = p.py();
           double pz = p.pz();
 	  double E = p.e();
 
+	  //Writes to file being used for homology
+	  file_ << px << " " << py << " " << pz << "\n" << endl;
+
+	  
           // add the particles to the FastJet PseudoJet object
           particles.push_back( PseudoJet( px, py, pz, E) );
 
@@ -78,7 +87,8 @@ int main()
       // ----------------------------------------------------------
       // --- Done collecting particles from event, now do jet stuff
       // ----------------------------------------------------------
-
+      //First, close .off file
+      file_.close();
       // --- choose a jet definition
       double R = 0.7;
       JetDefinition jet_def(antikt_algorithm, R);
