@@ -22,3 +22,5 @@ fj_pythia_test: fj_pythia_test.C
 persistent_homology_test: persistent_homology_test.C
 	g++ -o persistent_homology_test persistent_homology_test.C -Wall $(GFLAGS)
 
+ripsComplexWriter_01: ripsComplexWriter_01.C
+	g++ -o ripsComplexWriter_01 ripsComplexWriter_01.C -Wall $(GFLAGS)

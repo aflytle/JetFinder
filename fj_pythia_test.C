@@ -77,7 +77,7 @@ int main()
 	  double E = p.e();
 
 	  //Writes to file being used for homology
-	  file_ << px << " " << py << " " << pz << "\n" << endl;
+	  file_ << px << " " << py << " " << pz << endl;
 
 	  
           // add the particles to the FastJet PseudoJet object
