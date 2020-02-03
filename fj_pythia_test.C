@@ -26,7 +26,8 @@ int main()
   // Create .off file to externally store collision data, then set to read/write permissions
   ofstream file_("particle_data_03_02_2020.off");
   //file_.open ("particle_data_03_02_2020.off");
-  
+  file_ << "OFF" << endl;
+  file_ << "enter number of particles here " << " " << 0 << " " << 0 << endl;
   // initialize a new ROOT histogram to fill with the loop
   TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, 0, 100);
   TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
@@ -87,8 +88,9 @@ int main()
       // ----------------------------------------------------------
       // --- Done collecting particles from event, now do jet stuff
       // ----------------------------------------------------------
-      //First, close .off file
+      // --- First, close .off file
       file_.close();
+      
       // --- choose a jet definition
       double R = 0.7;
       JetDefinition jet_def(antikt_algorithm, R);
