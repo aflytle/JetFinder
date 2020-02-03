@@ -6,7 +6,7 @@ RFLAGS = `root-config --cflags --libs`
 
 GFLAGS = -std=c++14 -I${GUDHI}/include
 
-PROGRAMS = fj_test fj_pythia_test persistent_homology_test
+PROGRAMS = fj_test fj_pythia_test persistent_homology_test ripsComplexWriter_01
 
 all: $(PROGRAMS)
 

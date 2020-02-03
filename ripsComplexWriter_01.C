@@ -3,7 +3,7 @@
 #include <gudhi/distance_functions.h>
 
 #include <iostream>
-#include <ifstream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <limits>
@@ -11,8 +11,8 @@
 
 int main() {
   // --- First thing: open file for read/write
-  ifstream file_;
-  file_.open("particle_data_03_02_2020.off");
+  std::ifstream infile("particle_data_03_20_2020.off");
+  //file_.open("particle_data_03_02_2020.off");
   
   
   // Type definitions
@@ -51,14 +51,14 @@ int main() {
   // and the data set, such as
   // number of simplices, number of
   // vertices, edges, etc.
-  cout << "Dimension  " << stree.dimension() <<
-    "  Num Simplices  " << stree.num_simplices()<< " Num Vertices  " << stree.num_vertices() << endl;
+  std::cout << "Dimension  " << stree.dimension() <<
+    "  Num Simplices  " << stree.num_simplices()<< " Num Vertices  " << stree.num_vertices() << std::endl;
 
   //Tomorrow I will ad the info to make this a
   //Persistence or .per file. The
   //most useful example is at
   //https://gudhi.inria.fr/doc/latest/_rips_complex_2example_one_skeleton_rips_from_points_8cpp-example.html
   
-  file_.close();
-  return 0
+  //file_.close();
+  return 0;
 }
