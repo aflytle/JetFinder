@@ -23,6 +23,7 @@
 #include "TFile.h"
 #include <time.h>
 #include <chrono>
+#include <ctime>
 
 //Pythia
 
@@ -32,9 +33,8 @@
 
 #include "fastjet/ClusterSequence.hh"
 
-//Project Header
 
-#include "projHeader.h"
+
 
 using namespace fastjet;
 using namespace Pythia8;
@@ -68,7 +68,15 @@ int main()
 
   //creation of data file
   string file_name;
-  file_name = "Collision_" + currentDateTime() + "_.txt";
+  string file_type;
+  time_t curr_time;
+  tm * curr_tm;
+  char date_string[300];
+  time (&curr_time);
+  curr_tm = localtime(&curr_time);
+  strftime(date_string, 50, "./CollisionDataFiles/Collision-%Y-%m-%d_%H-%M", curr_tm);
+  file_type = ".txt";
+  file_name = date_string + file_type;
   ofstream file_(file_name);
   
   
