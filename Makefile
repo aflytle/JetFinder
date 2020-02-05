@@ -6,7 +6,7 @@ RFLAGS = `root-config --cflags --libs`
 
 GFLAGS = -std=c++14 -I${GUDHI}/include
 
-PROGRAMS = fj_test fj_pythia_test persistent_homology_test ripsComplexWriter_01
+PROGRAMS = fj_test fj_pythia_test persistent_homology_test ripsComplexWriter_01 rips_from_pythia
 
 all: $(PROGRAMS)
 
@@ -24,3 +24,6 @@ persistent_homology_test: persistent_homology_test.C
 
 ripsComplexWriter_01: ripsComplexWriter_01.C
 	g++ -o ripsComplexWriter_01 ripsComplexWriter_01.C -Wall $(GFLAGS)
+
+rips_from_pythia: rips_from_pythia.C
+	g++ -o rips_from_pythia rips_from_pythia.C -Wall $(GFLAGS) ${FFLAGS} $(PFLAGS) $(RFLAGS)
