@@ -40,7 +40,7 @@ int main()
   // initialize a new ROOT histogram to fill with the loop
   // keeping this to compare with TDA
   TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, 0, 100);
-  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
+  //  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
 
 
   // Generator. Process selection. LHC initialization.
@@ -97,7 +97,7 @@ int main()
 	  
           // add the particles to the FastJet PseudoJet object
           particles.push_back( PseudoJet( px, py, pz, E) );
-	  pointset.push_back( Point(px, py, pz) );
+	  pointset.push_back( {px, py, pz} );
         } // end loop over particles
     }
 
