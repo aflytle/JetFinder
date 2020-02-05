@@ -32,13 +32,11 @@
 
 #include "fastjet/ClusterSequence.hh"
 
-//Project Header
-
-#include "projHeader.h"
 
 using namespace fastjet;
 using namespace Pythia8;
 using namespace std;
+
 
 
 const double pi = 3.14159265358979323;
@@ -65,11 +63,7 @@ int main()
   //  std::vector<double> xList;
   //std::vector<double> yList;
   //std::vector<double> zList;
-
-  //creation of data file
-  string file_name;
-  file_name = "Collision_" + currentDateTime() + "_.txt";
-  ofstream file_(file_name);
+  ofstream file_("../CollisionDataFiles/Collision.txt");
   
   
   //creating vector for TDA

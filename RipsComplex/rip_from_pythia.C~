@@ -1,10 +1,6 @@
-//GUDHI
-
 #include <gudhi/Rips_complex.h>
 #include <gudhi/Simplex_tree.h>
 #include <gudhi/distance_functions.h>
-
-//MISC C++
 
 #include <iostream>
 #include <fstream>
@@ -12,17 +8,13 @@
 #include <string>
 #include <vector>
 #include <limits>
-#include <algorithm>
 
-//ROOT
+// This is a simple executable C++ meant to apply FastJet to Pythia8 events
 
 #include "TROOT.h"
-#include "TGraph.h"
 #include "TH1D.h"
 #include "TProfile.h"
 #include "TFile.h"
-#include <time.h>
-#include <chrono>
 
 //Pythia
 
@@ -32,13 +24,11 @@
 
 #include "fastjet/ClusterSequence.hh"
 
-//Project Header
-
-#include "projHeader.h"
 
 using namespace fastjet;
 using namespace Pythia8;
 using namespace std;
+
 
 
 const double pi = 3.14159265358979323;
@@ -50,7 +40,7 @@ int main()
   // initialize a new ROOT histogram to fill with the loop
   // keeping this to compare with TDA
   TH1D* pTr = new TH1D("pTr", "Transverse Momentum", 100, 0, 100);
-  //  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
+  TH1D* pTj = new TH1D("pTj", "Jet Transverse Momentum", 100, 0, 100);
 
 
   // Generator. Process selection. LHC initialization.
@@ -60,18 +50,6 @@ int main()
   pythia.readString("PhaseSpace:pTHatMin = 20.");
   pythia.init();
 
-  
-  //vectors for visualization
-  //  std::vector<double> xList;
-  //std::vector<double> yList;
-  //std::vector<double> zList;
-
-  //creation of data file
-  string file_name;
-  file_name = "Collision_" + currentDateTime() + "_.txt";
-  ofstream file_(file_name);
-  
-  
   //creating vector for TDA
   using Point = std::vector<double>;
   std::vector<Point> pointset;
@@ -118,17 +96,9 @@ int main()
 
 	  
           // add the particles to the FastJet PseudoJet object
-          particles.push_back( PseudoJet(px, py, pz, E) );
-	  
-	  //add particles to TDA vector
-	  pointset.push_back( {px, py, pz} );
-	  
-	  //add particles to visualiztion vectors
-	  //xList.push_back(px);
-	  //yList.push_back(py);
-	  //zList.push_back(pz);
-	  file_ << px << " " << py << " " << pz << endl; 
-	} // end loop over particles
+          particles.push_back( PseudoJet( px, py, pz, E) );
+	  pointset.push_back( px, py, pz );
+        } // end loop over particles
     }
 
   // end first half, start function for GUDHI
@@ -139,33 +109,20 @@ int main()
   using Filtration_value = Simplex_tree::Filtration_value;
   using Rips_complex = Gudhi::rips_complex::Rips_complex<Filtration_value>;
 
-  //Print a nice visualization to go with the TDA
-  //
-  //Fisrt convert vectors to arrays
-  //double arrX[xList.size()];
-  //std::copy(xList.begin(), xList.end(), arrX);
-  //double arrY[yList.size()];
-  //std::copy(yList.begin(), yList.end(), arrY);
-  //double arrZ[zList.size()];
-  //std::copy(zList.begin(), zList.end(), arrZ);
-  //now draw the graph
-  //TGraph* g = new TGraph(xList.size(), arrX, arrY, arrZ);
-  //g->Draw("p");//   p argument makes this a point cloud
 
-
-    
-  // Once we have the above 'pointset' vector, we can
+  
+  // Once we have the above vector, we can
   // move into creating a rips complex.
   // We do this by setting a threshold for dist.,
   // then using the Rips_complex generator from
   // GUDHI.
 
-  double threshold = 1.0; // WE NEED TO CHOOSE A
+  double threshold = 50.0; // WE NEED TO CHOOSE A
   // GOOD VALUE FOR THIS
   Rips_complex rips_complex_from_points(pointset, threshold, Gudhi::Euclidean_distance());
 
   Simplex_tree stree;
-  rips_complex_from_points.create_complex(stree, 2);
+  rips_complex_from_points.create_complex(stree, 4);
 
 
   
