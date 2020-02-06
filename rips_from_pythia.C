@@ -75,10 +75,9 @@ int main()
   time (&curr_time);
   curr_tm = localtime(&curr_time);
   strftime(date_string, 50, "./CollisionDataFiles/Collision-%Y-%m-%d_%H-%M", curr_tm);
-  file_type = ".off";
+  file_type = ".txt"; 
   file_name = date_string + file_type;
-  ofstream file_(file_name);
-  
+  ofstream file_(file_name); //later we need to prepend the particle count
   
   //creating vector for TDA
   using Point = std::vector<double>;
@@ -88,7 +87,6 @@ int main()
   // -------------------
   // --- Main event loop
   // -------------------
-
   for ( int iEvent = 0; iEvent < 2; ++iEvent )
     {
 

@@ -36,14 +36,12 @@ def Scatter_Plotter(q):
 
     x = datetime.datetime.now()
     plt.show()
-    plt.savefig(f"./Plots/fig_{x.strftime('%Y')}_{x.strftime('%m')}_{x.strftime('%d')}_{x.strftime('%H')}_{x.strftime('%M')}.png")
+    plt.savefig(f"fig_{x.strftime('%Y')}_{x.strftime('%m')}_{x.strftime('%d')}_{x.strftime('%H')}_{x.strftime('%M')}.png")
     return
     
 if __name__ == "__main__":
-
-    for root, dirs, files in os.walk('.',topdown=False):
+    for root, dirs, files in os.walk("."):
         for name in files:
-            if name.endswith(".off"):
+            if name.endswith(".txt"):
                 Scatter_Plotter(File_Reader(name))
-        
     
