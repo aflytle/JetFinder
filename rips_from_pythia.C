@@ -75,7 +75,7 @@ int main()
   time (&curr_time);
   curr_tm = localtime(&curr_time);
   strftime(date_string, 50, "./CollisionDataFiles/Collision-%Y-%m-%d_%H-%M", curr_tm);
-  file_type = ".txt";
+  file_type = ".off";
   file_name = date_string + file_type;
   ofstream file_(file_name);
   
