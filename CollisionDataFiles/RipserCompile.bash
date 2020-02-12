@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DATE=$(date '+%d-%m-%Y_%H-%M')
+#DATE=$(date '+%d-%m-%Y_%H-%M')
 FILETYPE=".txt"
 FILEBEGIN="./PersistenceVals/persistence_vals_"
-DATAFILE="$FILEBEGIN$DATE$FILETYPE"
+#DATAFILE="$FILEBEGIN$DATE$FILETYPE"
 
 #read inFile
 for f in *.txt; do
-    ../../Ripser/ripser/ripser $f --format point-cloud --dim 1 >$DATAFILE
+    ../../Ripser/ripser/ripser $f --format point-cloud --dim 1 > $FILEBEGIN$(date '+%F_%T%3N')$FILETYPE
 done
 	 
