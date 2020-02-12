@@ -67,17 +67,22 @@ int main()
   //std::vector<double> zList;
 
   //creation of data file
-  string file_name;
+  string file_name_1;
+  string file_name_2;
   string file_type;
   time_t curr_time;
   tm * curr_tm;
-  char date_string[300];
+  char date_string_1[300];
+  char date_string_2[300];
   time (&curr_time);
   curr_tm = localtime(&curr_time);
-  strftime(date_string, 50, "./CollisionDataFiles/Collision-%Y-%m-%d_%H-%M", curr_tm);
+  strftime(date_string_1, 50, "./CollisionDataFiles/Collision-%F_%T", curr_tm);
+  strftime(date_string_2, 50, "/.CollisionDataFiles/Persistence_max-%Y-%m-%d_%H-%M", curr_tm);
   file_type = ".txt"; 
-  file_name = date_string + file_type;
-  ofstream file_(file_name); //later we need to prepend the particle count
+  file_name_1 = date_string_1 + file_type;
+  file_name_2 = date_string_2 + file_type;
+  ofstream file_1_(file_name_1); //later we need to prepend the particle count
+  ofstream file_2_(file_name_2);
   
   //creating vector for TDA
   using Point = std::vector<double>;
@@ -133,7 +138,7 @@ int main()
 	  //xList.push_back(px);
 	  //yList.push_back(py);
 	  //zList.push_back(pz);
-	  file_ << px << " " << py << " " << pz << endl; 
+	  file_1_ << px << " " << py << " " << pz << endl; 
 	} // end loop over particles
     }
 
@@ -173,7 +178,7 @@ int main()
   Simplex_tree stree;
   rips_complex_from_points.create_complex(stree, 2);
 
-
+  
   
   // Now we have a skeleton complex and
   // Can display info about the complex
