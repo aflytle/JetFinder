@@ -46,4 +46,16 @@ FASTJET:<br />
 http://fastjet.fr/<br />
 
 
-Fastjet interfaces with ROOT and Pythia, which are specifically designed for High Energy Physics. The two topological packages are our main concern, as they are generalized for any type of data analysis. 
+Fastjet interfaces with ROOT and Pythia, which are specifically designed for High Energy Physics. The two topological packages are our main concern, as they are generalized for any type of data analysis.
+
+
+Minor notes on execution for large datasets for TDA:
+
+i. store the files in subdirectories of collision data based on beam energy<br />
+ii. store ripser'ed files in subdirectories of PersistenceVals
+<br /> based on beam energy<br />
+--> must check .bash inputs against rips_from inputs<br />
+iii. Take mean of each of top 5 - 20 lifetimes with python <br />
+--> ripser only outputs a certain data type, need to check formatting options<br />iv. Plot as functions of beam energy<br />
+--> implement in matplotlib once data is finished running
+
