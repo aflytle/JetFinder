@@ -19,7 +19,7 @@ using namespace std;
 
 
 
-const double pi = 3.14159265358979323;
+//const double pi = 3.14159265358979323;
 
 int main()
 {
@@ -38,6 +38,8 @@ int main()
   pythia.readString("Beams:eCM = 8000.");
   pythia.readString("HardQCD:all = on");
   pythia.readString("PhaseSpace:pTHatMin = 20.");
+  pythia.readString("Random:setSeed = on");
+  pythia.readString("Random:seed = 0");
   pythia.init();
 
   // -------------------

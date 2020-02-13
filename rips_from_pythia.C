@@ -58,9 +58,11 @@ int main()
   pythia.readString("Beams:eCM = 8000.");
   pythia.readString("HardQCD:all = on");
   pythia.readString("PhaseSpace:pTHatMin = 20.");
+  pythia.readString("Random:setSeed = on");
+  pythia.readString("Random:seed = 0");
   pythia.init();
 
-  
+
   //vectors for visualization
   //  std::vector<double> xList;
   //std::vector<double> yList;
@@ -76,14 +78,14 @@ int main()
   char date_string_2[300];
   time (&curr_time);
   curr_tm = localtime(&curr_time);
-  strftime(date_string_1, 50, "./CollisionDataFiles/Collision-%F_%T", curr_tm);
-  strftime(date_string_2, 50, "/.CollisionDataFiles/Persistence_max-%Y-%m-%d_%H-%M", curr_tm);
-  file_type = ".txt"; 
+  strftime(date_string_1, 50, "CollisionDataFiles/Collision-%F_%T", curr_tm);
+  //strftime(date_string_2, 50, "CollisionDataFiles/Persistence_max-%Y-%m-%d_%H-%M", curr_tm);
+  file_type = ".txt";
   file_name_1 = date_string_1 + file_type;
   file_name_2 = date_string_2 + file_type;
   ofstream file_1_(file_name_1); //later we need to prepend the particle count
   ofstream file_2_(file_name_2);
-  
+
   //creating vector for TDA
   using Point = std::vector<double>;
   std::vector<Point> pointset;
@@ -117,7 +119,7 @@ int main()
           // double eta = p.eta();
           double pT  = p.pT();
 	  pTr->Fill( pT );
-	  
+
           // --- double check these
           double px = p.px();
           double py = p.py();
@@ -127,24 +129,24 @@ int main()
 	  //Writes to file being used for homology
 	  //file_ << px << " " << py << " " << pz << endl;
 
-	  
+
           // add the particles to the FastJet PseudoJet object
           particles.push_back( PseudoJet(px, py, pz, E) );
-	  
+
 	  //add particles to TDA vector
 	  pointset.push_back( {px, py, pz} );
-	  
+
 	  //add particles to visualiztion vectors
 	  //xList.push_back(px);
 	  //yList.push_back(py);
 	  //zList.push_back(pz);
-	  file_1_ << px << " " << py << " " << pz << endl; 
+	  file_1_ << px << " " << py << " " << pz << endl;
 	} // end loop over particles
     }
 
   // end first half, start function for GUDHI
 
-      
+
   // Type definitions
   using Simplex_tree = Gudhi::Simplex_tree<Gudhi::Simplex_tree_options_fast_persistence>;
   using Filtration_value = Simplex_tree::Filtration_value;
@@ -164,7 +166,7 @@ int main()
   //g->Draw("p");//   p argument makes this a point cloud
 
 
-    
+
   // Once we have the above 'pointset' vector, we can
   // move into creating a rips complex.
   // We do this by setting a threshold for dist.,
@@ -178,8 +180,8 @@ int main()
   Simplex_tree stree;
   rips_complex_from_points.create_complex(stree, 2);
 
-  
-  
+
+
   // Now we have a skeleton complex and
   // Can display info about the complex
   // and the data set, such as
@@ -192,9 +194,9 @@ int main()
   //Persistence or .per file. The
   //most useful example is at
   //https://gudhi.inria.fr/doc/latest/_rips_complex_2example_one_skeleton_rips_from_points_8cpp-example.html
-  
+
   //file_.close();
-      
+
   return 0;
-      
+
 }
