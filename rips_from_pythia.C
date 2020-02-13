@@ -41,7 +41,7 @@ using namespace Pythia8;
 using namespace std;
 
 
-const double pi = 3.14159265358979323;
+//const double pi = 3.14159265358979323;
 
 int main()
 {
