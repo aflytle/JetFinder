@@ -54,7 +54,8 @@ int main(int argc, char *argv[])
 
 
   // Generator. Process selection. LHC initialization.
-  string pythiaFeed = "Beams:eCM = " + argv[1] + ".";
+  string Enrgy = argv[1];
+  string pythiaFeed = "Beams:eCM = " + Enrgy + ".";
   Pythia pythia;
   pythia.readString(pythiaFeed);
   //pythia.readString("Beams:eCM = 8000.");
@@ -73,6 +74,7 @@ int main(int argc, char *argv[])
   //creation of data file
   string file_name_1;
   string file_name_2;
+  string file_locale;
   string file_type;
   time_t curr_time;
   tm * curr_tm;
@@ -84,7 +86,7 @@ int main(int argc, char *argv[])
   //strftime(date_string_2, 50, "CollisionDataFiles/Persistence_max-%Y-%m-%d_%H-%M", curr_tm);
   file_type = ".txt";
   file_locale = argv[2];
-  file_name_1 = date_string_1 + file_type;
+  file_name_1 = date_string_1 + file_locale + file_type;
   file_name_2 = date_string_2 + file_type;
   ofstream file_1_(file_name_1); //later we need to prepend the particle count
   ofstream file_2_(file_name_2);
