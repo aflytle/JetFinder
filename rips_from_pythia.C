@@ -43,7 +43,7 @@ using namespace std;
 
 //const double pi = 3.14159265358979323;
 
-int main()
+int main(int argc, char *argv[])
 {
 
 
@@ -54,8 +54,10 @@ int main()
 
 
   // Generator. Process selection. LHC initialization.
+  string pythiaFeed = "Beams:eCM = " + argv[1] + ".";
   Pythia pythia;
-  pythia.readString("Beams:eCM = 8000.");
+  pythia.readString(pythiaFeed);
+  //pythia.readString("Beams:eCM = 8000.");
   pythia.readString("HardQCD:all = on");
   pythia.readString("PhaseSpace:pTHatMin = 20.");
   pythia.readString("Random:setSeed = on");
@@ -81,6 +83,7 @@ int main()
   strftime(date_string_1, 50, "CollisionDataFiles/Collision-%F_%T", curr_tm);
   //strftime(date_string_2, 50, "CollisionDataFiles/Persistence_max-%Y-%m-%d_%H-%M", curr_tm);
   file_type = ".txt";
+  file_locale = argv[2];
   file_name_1 = date_string_1 + file_type;
   file_name_2 = date_string_2 + file_type;
   ofstream file_1_(file_name_1); //later we need to prepend the particle count
