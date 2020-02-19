@@ -82,11 +82,11 @@ int main(int argc, char *argv[])
   char date_string_2[300];
   time (&curr_time);
   curr_tm = localtime(&curr_time);
-  strftime(date_string_1, 50, "CollisionDataFiles/Collision-%F_%T", curr_tm);
+  strftime(date_string_1, 50, "Collision-%F_%T", curr_tm);
   //strftime(date_string_2, 50, "CollisionDataFiles/Persistence_max-%Y-%m-%d_%H-%M", curr_tm);
   file_type = ".txt";
   file_locale = argv[2];
-  file_name_1 = date_string_1 + file_locale + file_type;
+  file_name_1 = file_locale + date_string_1 + file_type;
   file_name_2 = date_string_2 + file_type;
   ofstream file_1_(file_name_1); //later we need to prepend the particle count
   ofstream file_2_(file_name_2);
