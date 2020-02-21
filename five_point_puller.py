@@ -16,7 +16,7 @@ def puller(a, z):
         g = f[1]
         h = str(g)[:5]
         e.append(float(h))
-    file_.write(f"{z} {e[1]} {e[2]} {e[3]} {e[4]} {e[5]}\n")
+    file_.write(f"{z},{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
     file_.close()
     return e[1:7]
 
