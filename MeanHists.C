@@ -62,13 +62,11 @@ void MeanHists()
   string line, temp, val;
   //while (it != setOfFile.end())
   //{
-  while (f8192 >> temp)
+  while (getline(f8192, line, '\n'))
   //{
     {
       row.clear();
-
-      getline(f8192, line);
-
+      
       stringstream s(line);
 
       while (getline(s, val, ','))
@@ -82,9 +80,16 @@ void MeanHists()
       mean_four8192->Fill(row[4]);
       mean_five8192->Fill(row[5]);
     }
+  TFile* HistFile = new TFile("MeanHists.root", "recreate");
+  HistFile->cd();
+  mean_one8192->Write();
+  mean_two8192->Write();
+  mean_three8192->Write();
+  mean_four8192->Write();
+  mean_five8192->Write();
+
   mean_one8192->Draw();
   mean_two8192->Draw();
   mean_three8192->Draw();
   mean_four8192->Draw();
-  mean_five8192->Draw();
 }
