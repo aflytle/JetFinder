@@ -1,19 +1,9 @@
 //script to plot histograms of mean lifetimes
 
-#include "TROOT.h"
-#include "TH1D.h"
-#include "TProfile.h"
-#include "TCanvas.h"
-#include "TComplex.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
-
-int main()
-{
-  return 0;
-  }
 
 void MeanHists()
 {
@@ -92,12 +82,15 @@ void MeanHists()
   mean_two8192->Draw();
   mean_three8192->Draw();
   mean_four8192->Draw();
+  mean_five8192->Draw();
+  
+  double a = mean_one8192->GetStdDev();
+  double b = mean_two8192->GetStdDev();
+  double c = mean_three8192->GetStdDev();
+  double d = mean_four8192->GetStdDev();
+  double e = mean_five8192->GetStdDev();
 
-  double a = mean_one8192->GetRMS();
-  double b = mean_two8192->GetRMS();
-  double c = mean_three8192->GetRMS();
-  double e = mean_four8192->GetRMS();
-
-
+  gStyle->SetOptStat("nemsk");
+  
   
 }
