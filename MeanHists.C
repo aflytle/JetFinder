@@ -78,11 +78,11 @@ void MeanHists()
   mean_four8192->Write();
   mean_five8192->Write();
 
-  mean_one8192->Draw();
-  mean_two8192->Draw();
-  mean_three8192->Draw();
-  mean_four8192->Draw();
-  mean_five8192->Draw();
+  //mean_one8192->Draw();
+  //mean_two8192->Draw();
+  //mean_three8192->Draw();
+  //mean_four8192->Draw();
+  //mean_five8192->Draw();
   
   double a = mean_one8192->GetStdDev();
   double b = mean_two8192->GetStdDev();
@@ -92,5 +92,5 @@ void MeanHists()
 
   gStyle->SetOptStat("nemsk");
   
-  
+  cout << a << " " << b << " " << c << " " << d << " " << e << "\n";
 }
