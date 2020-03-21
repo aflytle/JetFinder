@@ -92,4 +92,12 @@ void MeanHists()
   mean_two8192->Draw();
   mean_three8192->Draw();
   mean_four8192->Draw();
+
+  double a = mean_one8192->GetRMS();
+  double b = mean_two8192->GetRMS();
+  double c = mean_three8192->GetRMS();
+  double e = mean_four8192->GetRMS();
+
+
+  
 }
