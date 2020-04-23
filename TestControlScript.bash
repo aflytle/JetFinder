@@ -2,12 +2,12 @@
 
 
 #calculate static meanvals
-meanvals= python3 mean_only.py
+#?meanvals= python3 mean_only.py
 #erase old files, must take out of non-test mode
-/bin/bash CleanTexts.bash
+#/bin/bash CleanTexts.bash
 
 E=120
-dir1="TEST_FILES"
+dir1="TEST_FILES/"
 
 #generate a test collision
 ./rips_from_pythia $E $dir1
@@ -20,6 +20,9 @@ filetype=".txt"
 mkdir $newdir
 filename="testfile"
 
+file="TEST_FILES/*.txt"
+#add line to check for arguments
+
 ../Ripser/ripser/ripser $file --format point-cloud --dim 0 > $newdir$filename$filetype
 
 
@@ -27,9 +30,9 @@ filename="testfile"
 
 
 #pull top five lifetimes from that collison
-thesevals= python3 five_point_puller.py $E $newdir$filename$filetype
+#thesevals= python3 five_point_puller.py $E $newdir$filename$filetype
 
 #compare the means from the test runs with the values from the five_point_puller script
-result= python3 FuzzyBoolean.py $meanvals $thesevals
+#result= python3 Fuzzy_Boolean.py $meanvals $thesevals
 
-echo $result
+#echo $result
