@@ -15,16 +15,25 @@ dir1="TEST_FILES/"
 
 
 #run ripser on test collision
+
 newdir="TEST_OUTPUTS/"
 filetype=".txt"
-mkdir $newdir
+if [ ! -d $newdir ]
+then
+   mkdir $newdir
+fi
 filename="testfile"
 
-file="TEST_FILES/*.txt"
+file="TEST_FILES/"
 #add line to check for arguments
 
-../Ripser/ripser/ripser $file --format point-cloud --dim 0 > $newdir$filename$filetype
 
+
+
+if [ ! -f  $newdir$filename$filetype ]
+then
+   ../Ripser/ripser/ripser $file/*.txt --format point-cloud --dim 0 > $newdir$filename$filetype
+fi
 
 
 
