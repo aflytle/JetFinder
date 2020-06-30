@@ -38,7 +38,7 @@ do
     let num++
     nums="_"$num"_"
     ../Ripser/ripser/ripser $i --format point-cloud --dim 0 > $newdir$filename$nums$filetype
-    thesevals= python3 five_point_puller.py $E $newdir$filename$nums$filetype
+    thesevals= python3 five_point_puller.py $newdir$filename$nums$filetype $E
 done
 #fi
 
@@ -46,7 +46,7 @@ done
 
 
 #pull top five lifetimes from that collison
-thesevals= python3 five_point_puller.py $E $newdir$filename$nums$filetype
+#thesevals= python3 five_point_puller.py $E $newdir$filename$nums$filetype
 
 
 #compare the means from the test runs with the values from the five_point_puller script
