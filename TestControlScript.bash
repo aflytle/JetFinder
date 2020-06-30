@@ -2,7 +2,7 @@
 
 
 #calculate static meanvals
-#?meanvals= python3 mean_only.py
+meanvals= python3 mean_only.py
 #erase old files, must take out of non-test mode
 #/bin/bash CleanTexts.bash
 
@@ -39,6 +39,11 @@ do
     nums="_"$num"_"
     ../Ripser/ripser/ripser $i --format point-cloud --dim 0 > $newdir$filename$nums$filetype
     thesevals= python3 five_point_puller.py $newdir$filename$nums$filetype $E
+
+    result= python3 Fuzzy_Boolean.py $meanvals $thesevals
+
+    echo $result
+    
 done
 #fi
 
@@ -50,6 +55,6 @@ done
 
 
 #compare the means from the test runs with the values from the five_point_puller script
-result= python3 Fuzzy_Boolean.py $meanvals $thesevals
+#result= python3 Fuzzy_Boolean.py $meanvals $thesevals
 
-echo $result
+#echo $result
