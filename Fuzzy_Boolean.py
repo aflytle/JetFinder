@@ -5,12 +5,12 @@ import ast
 
 def Matching(a, z):
     net = 1.0
-    l = len(z)
+    l = len(a)
     #compare each mean
     for i in range(l):
-        if float(z[i]) > float(a[0][i]) + float(a[1][i]):
+        if float(a[i]) > float(z[0][i]) + float(z[1][i]):
             net = net - (1.0/l)
-        elif float(z[i]) < float(a[0][i]) - float(a[1][i]):
+        elif float(a[i]) < float(z[0][i]) - float(z[1][i]):
             net = net - (1.0/l)
         else: continue
     return net
@@ -24,4 +24,5 @@ if __name__ == "__main__":
     a = [i.strip() for i in a]
     a = [float(i) for i in a]
     z = [ast.literal_eval(n) for n in z]
-    print(Matching(z,a))
+
+    print(Matching(a, z))

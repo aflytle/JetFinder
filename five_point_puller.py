@@ -34,10 +34,10 @@ if __name__ == "__main__":
     #arguments are, in order:
     #energy (given in BashEvent),
     #and the file it will be reading
-    e = puller(sys.argv[1], sys.argv[2])
+    #e = puller(sys.argv[1], sys.argv[2])
     #file_ = open(f"{sys.argv[1][0]}mean_points.txt", "w+")
     #file_.write(f"{sys.argv[1]},{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
     #file_.write(f"{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
     #file_.close()
-    puller(sys.argv[1], sys.argv[2])
+    print(puller(sys.argv[1], sys.argv[2]))
 
