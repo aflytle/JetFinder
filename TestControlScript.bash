@@ -1,12 +1,13 @@
 #!/bin/bash
 
-
+E=128
 #calculate static meanvals
-meanvals= python3 mean_only.py
+#meanvals= python3 mean_only.py
+meanvals= MeanValsTimeOne.txt $E
 #erase old files, must take out of non-test mode
 #/bin/bash CleanTexts.bash
 
-E=120
+
 dir1="TEST_FILES/"
 
 #generate a test collision
@@ -40,7 +41,8 @@ do
     ../Ripser/ripser/ripser $i --format point-cloud --dim 0 > $newdir$filename$nums$filetype
     thesevals= python3 five_point_puller.py $newdir$filename$nums$filetype $E
 
-    result= python3 Fuzzy_Boolean.py $meanvals $thesevals
+    #arguments in order: Five_point output, then Meanvals output
+    result= python3 Fuzzy_Boolean.py $thesevals $meanvals
 
     echo $result
     

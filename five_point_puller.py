@@ -6,7 +6,8 @@ import re
 
 #Pull top five persistence values
 def puller(a, z):
-    file_=open("TestFivePoint","w")
+    filename = "TestFivePoint.txt"
+    file_=open(filename,"w")
     b = open(a)
     c = b.readlines()
     d = (reversed(c))
@@ -20,9 +21,10 @@ def puller(a, z):
             g = nu[0]
             h = str(g)[:5]
             e.append(float(h))
-    file_.write(f"{z},{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
+    #file_.write(f"{z},{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
+    file_.write(f"{e[1]}\n,{e[2]}\n,{e[3]}\n,{e[4]}\n,{e[5]}\n")
     file_.close()
-    return e[1:7]
+    return filename
 
 
 
@@ -33,8 +35,9 @@ if __name__ == "__main__":
     #energy (given in BashEvent),
     #and the file it will be reading
     e = puller(sys.argv[1], sys.argv[2])
-    file_ = open(f"{sys.argv[1][0]}mean_points.txt", "w+")
-    file_.write(f"{sys.argv[1]},{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
-    file_.close()
+    #file_ = open(f"{sys.argv[1][0]}mean_points.txt", "w+")
+    #file_.write(f"{sys.argv[1]},{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
+    #file_.write(f"{e[1]},{e[2]},{e[3]},{e[4]},{e[5]}\n")
+    #file_.close()
     puller(sys.argv[1], sys.argv[2])
 
