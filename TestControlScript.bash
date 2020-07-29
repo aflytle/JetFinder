@@ -12,7 +12,7 @@ meanvals=$(python3 mean_only.py $E)
 dir1="TEST_FILES/"
 
 #generate a test collision
-./rips_from_pythia $E $dir1
+./rips_from_pythia_2 $E $dir1
 
 
 
